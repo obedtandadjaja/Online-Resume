@@ -1,0 +1,72 @@
+html, body
+{
+	height: 100%;
+	width: 100%;
+
+	background-color: black;
+
+	overflow: hidden;
+
+	margin: 0;
+}
+
+body
+{
+	background:url('../../images/pp.jpeg') no-repeat center center;
+	height: 100%;
+	width: 100%;
+}
+
+.container
+{
+	width: 100%;
+	position: fixed;
+	background-color: #000050;
+	height: 50px;
+	text-align: center;
+}
+
+h2, p
+{
+	color: white;
+	font-family: sans-serif;
+}
+
+i
+{
+	color: white;
+}
+
+#left
+{
+	position: fixed;
+	left: 0;
+	vertical-align: middle;
+	margin-left: 5px;
+}
+
+#right
+{
+	position: fixed;
+	right: 0;
+	vertical-align: middle;
+	margin-right: 5px;
+}
+
+.outer {
+    display: table;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.middle {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.inner {
+    margin-left: auto;
+    margin-right: auto;
+    width: /*whatever width you want*/;
+}
