@@ -2,7 +2,9 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use App\User;
+use App\Feat;
+use App\Activity;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller {
@@ -14,7 +16,10 @@ class ContactController extends Controller {
 	 */
 	public function index()
 	{
-		//
+		$user = User::find(1);
+		$feats = Feat::all();
+		$activities = Activity::all();
+		return view('contact', compact('user', 'feats', 'activities'));
 	}
 
 	/**
