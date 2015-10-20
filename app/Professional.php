@@ -18,4 +18,9 @@ class Professional extends Model {
 	 */
 	protected $fillable = ['name', 'description', 'time_period', 'position_title', 'location', 'imageUri'];
 
+	public function images()
+    {
+        return $this->belongsToMany(Image::class);
+    }
+
 }

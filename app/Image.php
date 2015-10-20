@@ -18,4 +18,29 @@ class Image extends Model {
 	 */
 	protected $fillable = ['title', 'description', 'location'];
 
+    public function professionals()
+    {
+        return $this->belongsToMany(Professional::class);
+    }
+
+    public function projects()
+    {
+        return $this->belongsToMany(Project::class);
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
+
+    public function feats()
+    {
+        return $this->belongsToMany(Feat::class);
+    }
+
+    public function volunteers()
+    {
+        return $this->belongsToMany(Volunteer::class);
+    }
+
 }

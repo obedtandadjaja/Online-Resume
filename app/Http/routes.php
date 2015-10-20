@@ -19,7 +19,7 @@ Route::get('portfolio', 'PortfolioController@index');
 
 Route::get('about', 'AboutController@index');
 
-Route::get('contact', 'ContactController@index');
+Route::resource('contact', 'ContactController');
 
 Route::get('thumbnail', 'ThumbnailController@index');
 
@@ -41,3 +41,17 @@ Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
+
+Route::get('/mailme', function()
+{
+	$data = [
+		'name' => 'obed',
+		'email' => 'obedhehe@covenant.edu',
+		'bodymessage' => 'hello there'
+	];
+	$sent = Mail::send('emails.contact', $data, function($message)
+	{
+		$message->to("obed.tandadjaja@gmail.com", "Obed")->subject("hello");
+	});
+	if(!$sent) dd("something went wrong");
+});

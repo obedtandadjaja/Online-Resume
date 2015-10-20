@@ -29,7 +29,7 @@
 					Add
 				</div>
 				<div class="panel-body">
-					<form class="form-horizontal" role="form" method="POST" action="update_projects">
+					<form class="form-horizontal" role="form" method="POST" action="update_projects" files="true" enctype="multipart/form-data">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 							<div class="form-group">
 								<label class="col-md-4 control-label">Project Name:</label>
@@ -66,6 +66,16 @@
                                 <div class="col-sm-6">
                                     <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Select Pictures</button>
                                     {!! Form::text('imageUri', '', ['class' => 'form-control', 'id' => 'imageUri']) !!}
+                                    Or Upload<br>
+                                    {!! Form::label('title_label', 'Title:') !!}
+							        {!! Form::text('title', '', ['class' => 'form-control']) !!}
+
+							        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+							        {!! Form::label('file_label', 'Picture:') !!}
+							        <input type="file" name="image[]" class="form-control" multiple>
+
+							        {!! Form::label('description_label', 'Description:') !!}
+							        {!! Form::textarea('image_description', '', ['class' => 'form-control', 'rows' => '2']) !!}
                                 </div>
                             </div>
 							<div class="form-group">
@@ -135,24 +145,6 @@
 					<strong>Description:</strong>
 					<br/>
 					<p class="col-md-12" rows="3">{{ $project->description }}</p>
-				</div>
-
-				<!-- Photos -->
-				
-				<div class="panel-body">
-					<strong>Project Pictures:</strong>
-
-					<br/>
-
-					<div class="form-group">
-			          	<label class="control-label col-md-2">Upload Pictures:</label>
-			          	<div class="input-group input-group-md col-md-9">
-			           	 	<input type="file" id="fileupload" class="form-control" multiple>
-			           	 	<input type="submit">
-			          	</div>
-			          	<br/>
-			          	<div class="col-md-11" id="dvPreview"></div>
-			        </div>
 				</div>
 
 				<!-- Buttons -->

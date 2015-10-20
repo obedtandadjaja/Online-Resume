@@ -6,6 +6,7 @@ use Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Input;
 
 // use Illuminate\Http\Request;
 
@@ -27,16 +28,7 @@ class UpdateFeatsController extends Controller {
         $images = Image::all();
         foreach($feats as $feat)
         {
-            $imageUri = $feat->imageUri;
-            $image_array = explode(',', $imageUri);
-            array_pop($image_array);
-            
-            $feat_images = array();
-            foreach($image_array as $image_id)
-            {
-                array_push($feat_images, Image::find($image_id));
-            }
-
+            $feat_images = $feat->images;
             $feat->imageUri = $feat_images;
         }
 
@@ -61,10 +53,45 @@ class UpdateFeatsController extends Controller {
 	public function store()
 	{
 		$input = Request::all();
+		$feat = Feat::create($input);
+		$imageUri = Input::get('imageUri');
+		$image_array = explode(',', $imageUri);
+		array_pop($image_array);
+		foreach($image_array as $image_id)
+		{
+			$exists = $feat->images->contains($image_id);
+        	if(!$exists)
+        	{
+        		$feat->images()->attach($image_id);
+        	}
+		}
+		foreach(Input::file('image') as $file)
+        {
+        	if($file)
+        	{
+        		if($file->isValid())
+	            {
+	                $destinationPath = public_path() . '/uploads/'; // upload path
+	                $fileName = $file->getClientOriginalName(); // renameing image
+	                $file->move($destinationPath, $fileName); // uploading file to given path
 
-		Feat::create($input);
+	                $image = Image::create([
+	                    "title" => Input::input('title'),
+	                    "description" => Input::input('image_description'),
+	                    "location" => '../../uploads/' . $fileName
+	                ]);
 
-		return redirect('update_feats');
+	                $feat->images()->attach($image->id);
+	            }
+	            else
+	            {
+	                return Redirect::to('image')->with('success', 'upload not successful');
+	                break;
+	            }
+        	}
+        }
+
+		return redirect('update_feats')->with('success', 'add successful');
 	}
 
 	/**
@@ -77,18 +104,11 @@ class UpdateFeatsController extends Controller {
 	{
 		$feat = Feat::findOrFail($id);
         $images = Image::all();
-        $imageUri = $feat->imageUri;
-        $image_array = explode(',', $imageUri);
-        array_pop($image_array);
-        
-        $feat_images = array();
-        foreach($image_array as $image_id)
-        {
-            array_push($feat_images, Image::find($image_id));
-        }
+        $imageUri = $feat->images->lists('id');
+        $imageUri = implode(",", $imageUri) . ",";
+        $feat_images = $feat->images;
 
-        $feat->imageUri = $feat_images;
-		return view('feats.show', compact('feat', 'images'));
+		return view('feats.show', compact('feat', 'images', 'imageUri', 'feat_images'));
 	}
 
 	/**
@@ -106,6 +126,17 @@ class UpdateFeatsController extends Controller {
 		$feat->time_period = Request::get('time_period');
 		$feat->description = Request::get('description');
         $feat->imageUri = Request::get('imageUri');
+		$imageUri = Request::get('imageUri');
+        $imageUri = explode(",", $imageUri);
+        array_pop($imageUri);
+        foreach($imageUri as $image_id)
+        {
+        	$exists = $feat->images->contains($image_id);
+        	if(!$exists)
+        	{
+        		$feat->images()->attach($image_id);
+        	}
+        }
 		$feat->save();
 
 		return Redirect::to('update_feats')->with('success', 'edit success');

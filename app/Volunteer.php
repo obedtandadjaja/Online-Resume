@@ -18,4 +18,9 @@ class Volunteer extends Model {
 	 */
 	protected $fillable = ['name', 'role', 'cause', 'description', 'time_period', 'imageUri'];
 
+	public function images()
+    {
+        return $this->belongsToMany(Image::class);
+    }
+
 }

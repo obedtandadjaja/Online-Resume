@@ -64,7 +64,8 @@
 										</h1>
 									</header>
 									<section class="col-md-12" style="padding-top: 20px">
-										<form class="form-horizontal">
+										<form class="form-horizontal" role="form" method="POST" action="contact">
+											<input type="hidden" name="_token" value="{{ csrf_token() }}">
 											<div class="col-sm-12" style="border-radius: 5px; background-color: #34495e; padding: 10px 10px 10px 10px">
 												<div class="row">
 													<div class="col-sm-12" style="padding-top: 25px">
@@ -74,7 +75,7 @@
 														{!! Form::text('email', '', ['class' => 'form-control', 'placeholder' => 'Your Email']) !!}
 													</div>
 													<div class="col-sm-12" style="padding-top: 15px">
-														{!! Form::textarea('message', '', ['class' => 'form-control', 'placeholder' => 'Message', 'rows' => '5']) !!}
+														{!! Form::textarea('bodymessage', '', ['class' => 'form-control', 'placeholder' => 'Message', 'rows' => '5']) !!}
 													</div>
 													<div class="col-sm-12" style="padding-top: 15px">
 														{!! Form::submit('Send', ['class' => 'btn btn-primary col-sm-12']) !!}

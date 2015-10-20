@@ -6,6 +6,10 @@ use App\User;
 use App\Feat;
 use App\Activity;
 use Illuminate\Http\Request;
+use Input;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller {
 
@@ -39,7 +43,38 @@ class ContactController extends Controller {
 	 */
 	public function store()
 	{
-		//
+		//Get all the data and store it inside Store Variable
+            $data = Input::all();
+ 
+            //Validation rules
+            $rules = array (
+                'name' => 'required',
+                'email' => 'required|email',
+                'bodymessage'=>'required',
+            );
+ 
+            //Validate data
+            $validator  = Validator::make($data, $rules);
+ 
+            //If everything is correct than run passes.
+            if ($validator -> passes())
+            {
+                //Send email using Laravel send function
+                $sent = Mail::send('emails.contact', $data, function($message) use ($data)
+                {
+					//email 'From' field: Get users email add and name
+                    $message->from($data['email'] , $data['name']);
+					//email 'To' field: cahnge this to emails that you want to be notified.
+					$message->to('obed.tandadjaja@gmail.com', 'Obed Tandadjaja')->subject('Contact Request');
+                });
+                return view('contact');
+            }
+            else
+            {
+				//return contact form with errors
+				dd($validator);
+                return Redirect::to('/contact')->withErrors($validator);
+            }
 	}
 
 	/**

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Professional;
 use App\Http\Requests;
 use App\Image;
+use Input;
 use App\Http\Controllers\Controller;
 
 // use Illuminate\Http\Request;
@@ -25,19 +26,10 @@ class UpdateProfessionalsController extends Controller {
 	{
 		$professionals = Professional::all();
         $images = Image::all();
-		foreach($professionals as $professional)
+        foreach($professionals as $professional)
         {
-            $imageUri = $professional->imageUri;
-            $image_array = explode(',', $imageUri);
-            array_pop($image_array);
-            
-            $professional_images = array();
-            foreach($image_array as $image_id)
-            {
-                array_push($professional_images, Image::find($image_id));
-            }
-
-            $professional->imageUri = $professional_images;
+        	$professional_images = $professional->images;
+        	$professional->imageUri = $professional_images;
         }
 
 		return view('professionals.index', compact('professionals', 'images'));
@@ -60,9 +52,45 @@ class UpdateProfessionalsController extends Controller {
 	 */
 	public function store()
 	{
-		$input = Request::all();
+		$input = Input::all();
+		$professional = Professional::create($input);
+		$imageUri = Input::get('imageUri');
+		$image_array = explode(',', $imageUri);
+        array_pop($image_array);
+        foreach($image_array as $image_id)
+        {
+        	$exists = $professional->images->contains($image_id);
+        	if(!$exists)
+        	{
+        		$professional->images()->attach($image_id);
+        	}
+        }
 
-		Professional::create($input);
+		foreach(Input::file('image') as $file)
+        {
+        	if($file)
+        	{
+        		if($file->isValid())
+	            {
+	                $destinationPath = public_path() . '/uploads/'; // upload path
+	                $fileName = $file->getClientOriginalName(); // renameing image
+	                $file->move($destinationPath, $fileName); // uploading file to given path
+
+	                $image = Image::create([
+	                    "title" => Input::input('title'),
+	                    "description" => Input::input('image_description'),
+	                    "location" => '../../uploads/' . $fileName
+	                ]);
+
+	                $professional->images()->attach($image->id);
+	            }
+	            else
+	            {
+	                return Redirect::to('image')->with('success', 'upload not successful');
+	                break;
+	            }
+        	}
+        }
 
 		return redirect('update_professionals');
 	}
@@ -77,19 +105,11 @@ class UpdateProfessionalsController extends Controller {
 	{
 		$professional = Professional::findOrFail($id);
         $images = Image::all();
-        $imageUri = $professional->imageUri;
-        $image_array = explode(',', $imageUri);
-        array_pop($image_array);
-        
-        $professional_images = array();
-        foreach($image_array as $image_id)
-        {
-            array_push($professional_images, Image::find($image_id));
-        }
+        $imageUri = $professional->images->lists('id');
+        $imageUri = implode(",", $imageUri) . ",";
+        $professional_images = $professional->images;
 
-        $professional->imageUri = $professional_images;
-
-		return view('professionals.show', compact('professional', 'images'));
+		return view('professionals.show', compact('professional', 'images', 'imageUri', 'professional_images'));
 	}
 
 	/**
@@ -100,13 +120,24 @@ class UpdateProfessionalsController extends Controller {
 	 */
 	public function edit($id)
 	{
+		dd(Input::file('image'));
 		$professional = Professional::findOrFail($id);
 		$professional->name = Request::get('name');
 		$professional->position_title = Request::get('position_title');
 		$professional->location = Request::get('location');
 		$professional->time_period = Request::get('time_period');
 		$professional->description = Request::get('description');
-        $professional->imageUri = Request::get('imageUri');
+        $imageUri = Request::get('imageUri');
+        $imageUri = explode(",", $imageUri);
+        array_pop($imageUri);
+        foreach($imageUri as $image_id)
+        {
+        	$exists = $professional->images->contains($image_id);
+        	if(!$exists)
+        	{
+        		$professional->images()->attach($image_id);
+        	}
+        }
 		$professional->save();
 
 		return Redirect::to('update_professionals')->with('success', 'edit success');

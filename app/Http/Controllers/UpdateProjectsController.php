@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Project;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Input;
 
 // use Illuminate\Http\Request;
 
@@ -27,16 +28,7 @@ class UpdateProjectsController extends Controller {
         $images = Image::all();
 		foreach($projects as $project)
         {
-            $imageUri = $project->imageUri;
-            $image_array = explode(',', $imageUri);
-            array_pop($image_array);
-            
-            $project_images = array();
-            foreach($image_array as $image_id)
-            {
-                array_push($project_images, Image::find($image_id));
-            }
-
+            $project_images = $project->images;
             $project->imageUri = $project_images;
         }
 
@@ -60,11 +52,46 @@ class UpdateProjectsController extends Controller {
 	 */
 	public function store()
 	{
-		$input = Request::all();
+		$input = Input::all();
+		$project = Project::create($input);
+		$imageUri = Input::get('imageUri');
+		$image_array = explode(',', $imageUri);
+		array_pop($image_array);
+		foreach($image_array as $image_id)
+		{
+			$exists = $project->images->contains($image_id);
+        	if(!$exists)
+        	{
+        		$project->images()->attach($image_id);
+        	}
+		}
+		foreach(Input::file('image') as $file)
+        {
+        	if($file)
+        	{
+        		if($file->isValid())
+	            {
+	                $destinationPath = public_path() . '/uploads/'; // upload path
+	                $fileName = $file->getClientOriginalName(); // renameing image
+	                $file->move($destinationPath, $fileName); // uploading file to given path
 
-		Project::create($input);
+	                $image = Image::create([
+	                    "title" => Input::input('title'),
+	                    "description" => Input::input('image_description'),
+	                    "location" => '../../uploads/' . $fileName
+	                ]);
 
-		return redirect('update_projects');
+	                $project->images()->attach($image->id);
+	            }
+	            else
+	            {
+	                return Redirect::to('image')->with('success', 'upload not successful');
+	                break;
+	            }
+        	}
+        }
+
+		return redirect('update_projects')->with('success', 'add successful');
 	}
 
 	/**
@@ -77,19 +104,11 @@ class UpdateProjectsController extends Controller {
 	{
 		$project = Project::findOrFail($id);
         $images = Image::all();
-        $imageUri = $project->imageUri;
-        $image_array = explode(',', $imageUri);
-        array_pop($image_array);
-        
-        $project_images = array();
-        foreach($image_array as $image_id)
-        {
-            array_push($project_images, Image::find($image_id));
-        }
+        $imageUri = $project->images->lists('id');
+        $imageUri = implode(",", $imageUri) . ",";
+        $project_images = $project->images;
 
-        $project->imageUri = $project_images;
-
-		return view('projects.show', compact('project', 'images'));
+		return view('projects.show', compact('project', 'images', 'imageUri', 'project_images'));
 	}
 
 	/**
@@ -107,6 +126,17 @@ class UpdateProjectsController extends Controller {
 		$project->time_period = Request::get('time_period');
 		$project->description = Request::get('description');
         $project->imageUri = Request::get('imageUri');
+		$imageUri = Request::get('imageUri');
+        $imageUri = explode(",", $imageUri);
+        array_pop($imageUri);
+        foreach($imageUri as $image_id)
+        {
+        	$exists = $project->images->contains($image_id);
+        	if(!$exists)
+        	{
+        		$project->images()->attach($image_id);
+        	}
+        }
 		$project->save();
 
 		return Redirect::to('update_projects')->with('success', 'edit success');

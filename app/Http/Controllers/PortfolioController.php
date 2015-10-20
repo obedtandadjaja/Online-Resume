@@ -21,48 +21,21 @@ class PortfolioController extends Controller {
 		$professionals = Professional::all();
         foreach($professionals as $professional)
         {
-            $imageUri = $feat->imageUri;
-            $image_array = explode(',', $imageUri);
-            array_pop($image_array);
-            
-            $array_image = array();
-            foreach($image_array as $image_id)
-            {
-                array_push($array_image, Image::find($image_id));
-            }
-
-            $professional->imageUri = $array_image;
+            $professional_images = $professional->images;
+            $professional->imageUri = $professional_images;
         }
 
 		$volunteers = Volunteer::all();
 		foreach($volunteers as $volunteer)
         {
-            $imageUri = $volunteer->imageUri;
-            $image_array = explode(',', $imageUri);
-            array_pop($image_array);
-            
-            $array_image = array();
-            foreach($image_array as $image_id)
-            {
-                array_push($array_image, Image::find($image_id));
-            }
-
-            $volunteer->imageUri = $array_image;
+            $volunteer_images = $volunteer->images;
+            $volunteer->imageUri = $volunteer_images;
         }
 
 		$projects = Project::all();
 		foreach($projects as $project)
         {
-            $imageUri = $project->imageUri;
-            $image_array = explode(',', $imageUri);
-            array_pop($image_array);
-            
-            $project_images = array();
-            foreach($image_array as $image_id)
-            {
-                array_push($project_images, Image::find($image_id));
-            }
-
+            $project_images = $project->images;
             $project->imageUri = $project_images;
         }
 

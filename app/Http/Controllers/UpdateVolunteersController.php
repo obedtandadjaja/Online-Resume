@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Volunteer;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Input;
 
 // use Illuminate\Http\Request;
 
@@ -27,16 +28,7 @@ class UpdateVolunteersController extends Controller {
 		$images = Image::all();
 		foreach($volunteers as $volunteer)
         {
-            $imageUri = $volunteer->imageUri;
-            $image_array = explode(',', $imageUri);
-            array_pop($image_array);
-            
-            $volunteer_images = array();
-            foreach($image_array as $image_id)
-            {
-                array_push($volunteer_images, Image::find($image_id));
-            }
-
+            $volunteer_images = $volunteer->images;
             $volunteer->imageUri = $volunteer_images;
         }
 
@@ -61,10 +53,45 @@ class UpdateVolunteersController extends Controller {
 	public function store()
 	{
 		$input = Request::all();
+		$volunteer = Volunteer::create($input);
+		$imageUri = Input::get('imageUri');
+		$image_array = explode(',', $imageUri);
+		array_pop($image_array);
+		foreach($image_array as $image_id)
+		{
+			$exists = $volunteer->images->contains($image_id);
+        	if(!$exists)
+        	{
+        		$volunteer->images()->attach($image_id);
+        	}
+		}
+		foreach(Input::file('image') as $file)
+        {
+        	if($file)
+        	{
+        		if($file->isValid())
+	            {
+	                $destinationPath = public_path() . '/uploads/'; // upload path
+	                $fileName = $file->getClientOriginalName(); // renameing image
+	                $file->move($destinationPath, $fileName); // uploading file to given path
 
-		Volunteer::create($input);
+	                $image = Image::create([
+	                    "title" => Input::input('title'),
+	                    "description" => Input::input('image_description'),
+	                    "location" => '../../uploads/' . $fileName
+	                ]);
 
-		return redirect('update_volunteers');
+	                $volunteer->images()->attach($image->id);
+	            }
+	            else
+	            {
+	                return Redirect::to('image')->with('success', 'upload not successful');
+	                break;
+	            }
+        	}
+        }
+
+		return redirect('update_volunteers')->with('success', 'add successful');
 	}
 
 	/**
@@ -77,19 +104,11 @@ class UpdateVolunteersController extends Controller {
 	{
 		$volunteer = volunteer::findOrFail($id);
         $images = Image::all();
-        $imageUri = $volunteer->imageUri;
-        $image_array = explode(',', $imageUri);
-        array_pop($image_array);
-        
-        $volunteer_images = array();
-        foreach($image_array as $image_id)
-        {
-            array_push($volunteer_images, Image::find($image_id));
-        }
+        $imageUri = $volunteer->images->lists('id');
+        $imageUri = implode(",", $imageUri) . ",";
+        $volunteer_images = $volunteer->images;
 
-        $volunteer->imageUri = $volunteer_images;
-
-		return view('volunteers.show', compact('volunteer', 'images'));
+		return view('volunteers.show', compact('volunteer', 'images', 'imageUri', 'volunteer_images'));
 	}
 
 	/**
@@ -107,6 +126,17 @@ class UpdateVolunteersController extends Controller {
 		$volunteer->time_period = Request::get('time_period');
 		$volunteer->description = Request::get('description');
         $volunteer->imageUri = Request::get('imageUri');
+		$imageUri = Request::get('imageUri');
+        $imageUri = explode(",", $imageUri);
+        array_pop($imageUri);
+        foreach($imageUri as $image_id)
+        {
+        	$exists = $volunteer->images->contains($image_id);
+        	if(!$exists)
+        	{
+        		$volunteer->images()->attach($image_id);
+        	}
+        }
 		$volunteer->save();
 
 		return Redirect::to('update_volunteers')->with('success', 'edit success');

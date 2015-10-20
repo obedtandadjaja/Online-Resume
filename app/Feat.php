@@ -18,4 +18,9 @@ class Feat extends Model {
 	 */
 	protected $fillable = ['name', 'occupation', 'issuer', 'description', 'time_period', 'imageUri'];
 
+	public function images()
+    {
+        return $this->belongsToMany(Image::class);
+    }
+
 }

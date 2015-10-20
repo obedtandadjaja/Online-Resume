@@ -18,4 +18,9 @@ class Project extends Model {
 	 */
 	protected $fillable = ['name', 'occupation', 'description', 'team_members', 'imageUri', 'time_period'];
 
+	public function images()
+    {
+        return $this->belongsToMany(Image::class);
+    }
+
 }

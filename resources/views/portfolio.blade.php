@@ -19,56 +19,162 @@
 	<body>
 
     <!-- Modal -->
-    <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog modal-lg">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                        <!-- Indicators -->
-                        <ol class="carousel-indicators">
-                            @for($i = 0; $i < sizeof($projects[0]->imageUri); $i++)
-                                @if($i == 0)
-                                    <li data-target="#myCarousel" data-slide-to="{{ $i }}" class="active"></li>
-                                @else
-                                    <li data-target="#myCarousel" data-slide-to="{{ $i }}"></li>
-                                @endif
-                            @endfor
-                        </ol>
+    @foreach ($projects as $project)
+	    <div id="myModal_{{ $project->id }}" class="modal fade" role="dialog">
+	        <div class="modal-dialog modal-lg">
+	            <!-- Modal content-->
+	            <div class="modal-content">
+	                <div class="modal-body">
+	                    <div id="myCarousel_project_{{ $project->id }}" class="carousel slide" data-ride="carousel">
+	                        <!-- Indicators -->
+	                        <ol class="carousel-indicators">
+	                            @for($i = 0; $i < sizeof($project->imageUri); $i++)
+	                                @if($i == 0)
+	                                    <li data-target="#myCarousel_project_{{ $project->id }}" data-slide-to="{{ $i }}" class="active"></li>
+	                                @else
+	                                    <li data-target="#myCarousel_project_{{ $project->id }}" data-slide-to="{{ $i }}"></li>
+	                                @endif
+	                            @endfor
+	                        </ol>
 
-                        <!-- Wrapper for slides -->
-                        <div class="carousel-inner" role="listbox">
-                            @for($i = 0; $i < sizeof($projects[0]->imageUri); $i++)
-                                @if($i == 0)
-                                    <div class="item active">
-                                        <img src="{{ $projects[0]->imageUri[0]->location }}" alt="Chania" style="max-height: 600px" class="center-block">
-                                    </div>
-                                @else
-                                    <div class="item">
-                                        <img src="{{ $projects[0]->imageUri[$i]->location }}" alt="Chania" style="max-height: 600px" class="center-block">
-                                    </div>
-                                @endif
-                            @endfor
-                        </div>
+	                        <!-- Wrapper for slides -->
+	                        <div class="carousel-inner" role="listbox">
+	                            @for($i = 0; $i < sizeof($project->imageUri); $i++)
+	                                @if($i == 0)
+	                                    <div class="item active">
+	                                        <img src="{{ $project->imageUri[$i]->location }}" alt="Chania" style="max-height: 600px" class="center-block">
+	                                    </div>
+	                                @else
+	                                    <div class="item">
+	                                        <img src="{{ $project->imageUri[$i]->location }}" alt="Chania" style="max-height: 600px" class="center-block">
+	                                    </div>
+	                                @endif
+	                            @endfor
+	                        </div>
 
-                        <!-- Left and right controls -->
-                        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev" style="background:transparent">
-                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" style="color: #999999"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next" style="background:transparent">
-                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true" style="color: #999999"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
+	                        <!-- Left and right controls -->
+	                        <a class="left carousel-control" href="#myCarousel_project_{{ $project->id }}" role="button" data-slide="prev" style="background:transparent">
+	                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" style="color: #999999"></span>
+	                            <span class="sr-only">Previous</span>
+	                        </a>
+	                        <a class="right carousel-control" href="#myCarousel_project_{{ $project->id }}" role="button" data-slide="next" style="background:transparent">
+	                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true" style="color: #999999"></span>
+	                            <span class="sr-only">Next</span>
+	                        </a>
+	                    </div>
+	                </div>
+	                <div class="modal-footer">
+	                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	                </div>
+	            </div>
 
-        </div>
-    </div>
+	        </div>
+	    </div>
+    @endforeach
+    @foreach ($professionals as $professionals)
+	    <div id="myModal_{{ $professional->id }}" class="modal fade" role="dialog">
+	        <div class="modal-dialog modal-lg">
+	            <!-- Modal content-->
+	            <div class="modal-content">
+	                <div class="modal-body">
+	                    <div id="myCarousel_professional_{{ $professional->id }}" class="carousel slide" data-ride="carousel">
+	                        <!-- Indicators -->
+	                        <ol class="carousel-indicators">
+	                            @for($i = 0; $i < sizeof($professional->imageUri); $i++)
+	                                @if($i == 0)
+	                                    <li data-target="#myCarousel_professional_{{ $professional->id }}" data-slide-to="{{ $i }}" class="active"></li>
+	                                @else
+	                                    <li data-target="#myCarousel_professional_{{ $professional->id }}" data-slide-to="{{ $i }}"></li>
+	                                @endif
+	                            @endfor
+	                        </ol>
+
+	                        <!-- Wrapper for slides -->
+	                        <div class="carousel-inner" role="listbox">
+	                            @for($i = 0; $i < sizeof($professional->imageUri); $i++)
+	                                @if($i == 0)
+	                                    <div class="item active">
+	                                        <img src="{{ $professional->imageUri[$i]->location }}" alt="Chania" style="max-height: 600px" class="center-block">
+	                                    </div>
+	                                @else
+	                                    <div class="item">
+	                                        <img src="{{ $professional->imageUri[$i]->location }}" alt="Chania" style="max-height: 600px" class="center-block">
+	                                    </div>
+	                                @endif
+	                            @endfor
+	                        </div>
+
+	                        <!-- Left and right controls -->
+	                        <a class="left carousel-control" href="#myCarousel_professional_{{ $professional->id }}" role="button" data-slide="prev" style="background:transparent">
+	                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" style="color: #999999"></span>
+	                            <span class="sr-only">Previous</span>
+	                        </a>
+	                        <a class="right carousel-control" href="#myCarousel_professional_{{ $professional->id }}" role="button" data-slide="next" style="background:transparent">
+	                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true" style="color: #999999"></span>
+	                            <span class="sr-only">Next</span>
+	                        </a>
+	                    </div>
+	                </div>
+	                <div class="modal-footer">
+	                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	                </div>
+	            </div>
+
+	        </div>
+	    </div>
+    @endforeach
+    @foreach ($volunteers as $volunteer)
+	    <div id="myModal_{{ $volunteer->id }}" class="modal fade" role="dialog">
+	        <div class="modal-dialog modal-lg">
+	            <!-- Modal content-->
+	            <div class="modal-content">
+	                <div class="modal-body">
+	                    <div id="myCarousel_volunteer_{{ $volunteer->id }}" class="carousel slide" data-ride="carousel">
+	                        <!-- Indicators -->
+	                        <ol class="carousel-indicators">
+	                            @for($i = 0; $i < sizeof($volunteer->imageUri); $i++)
+	                                @if($i == 0)
+	                                    <li data-target="#myCarousel_volunteer_{{ $volunteer->id }}" data-slide-to="{{ $i }}" class="active"></li>
+	                                @else
+	                                    <li data-target="#myCarousel_volunteer_{{ $volunteer->id }}" data-slide-to="{{ $i }}"></li>
+	                                @endif
+	                            @endfor
+	                        </ol>
+
+	                        <!-- Wrapper for slides -->
+	                        <div class="carousel-inner" role="listbox">
+	                            @for($i = 0; $i < sizeof($volunteer->imageUri); $i++)
+	                                @if($i == 0)
+	                                    <div class="item active">
+	                                        <img src="{{ $volunteer->imageUri[$i]->location }}" alt="Chania" style="max-height: 600px" class="center-block">
+	                                    </div>
+	                                @else
+	                                    <div class="item">
+	                                        <img src="{{ $volunteer->imageUri[$i]->location }}" alt="Chania" style="max-height: 600px" class="center-block">
+	                                    </div>
+	                                @endif
+	                            @endfor
+	                        </div>
+
+	                        <!-- Left and right controls -->
+	                        <a class="left carousel-control" href="#myCarousel_volunteer_{{ $volunteer->id }}" role="button" data-slide="prev" style="background:transparent">
+	                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" style="color: #999999"></span>
+	                            <span class="sr-only">Previous</span>
+	                        </a>
+	                        <a class="right carousel-control" href="#myCarousel_volunteer_{{ $project->id }}" role="button" data-slide="next" style="background:transparent">
+	                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true" style="color: #999999"></span>
+	                            <span class="sr-only">Next</span>
+	                        </a>
+	                    </div>
+	                </div>
+	                <div class="modal-footer">
+	                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	                </div>
+	            </div>
+
+	        </div>
+	    </div>
+    @endforeach
 
 		<!-- Wrapper-->
 			<div id="wrapper">
@@ -163,7 +269,7 @@
                                                 </div>
                                                 <div class="col-sm-3" style="margin-top: 20px; margin-bottom: 20px">
                                                     <img src="{{ $project->imageUri[0]->location }}" class="img-responsive"/>
-                                                    <button type="button" class="btn btn-primary col-sm-12" data-toggle="modal" data-target="#myModal">See All Pictures</button>
+                                                    <button type="button" class="btn btn-primary col-sm-12" data-toggle="modal" data-target="#myModal_{{ $project->id }}">See All Pictures</button>
                                                 </div>
 											</div>
 											@endforeach
