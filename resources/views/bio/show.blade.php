@@ -100,7 +100,7 @@
 
 						<!-- <button class="btn btn-danger form-control">Select Picture</button> -->
                         <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Select Pictures</button>
-                        {!! Form::text('imageUri', '', ['class' => 'form-control', 'id' => 'imageUri']) !!}
+                        {!! Form::text('imageUri', $imageUri, ['class' => 'form-control', 'id' => 'imageUri']) !!}
 
 					</div>
 

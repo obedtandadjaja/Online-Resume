@@ -186,7 +186,7 @@
 						<a href="#me" class="icon fa-folder-open active"><span>Portfolio</span></a>
 						<a href="#professionals" class="icon fa-briefcase"><span>Professional</span></a>
 						<a href="#projects" class="icon fa-pencil-square-o"><span>Project</span></a>
-						<a href="#volunteers" class="icon fa-users"><span>Volunteer</span></a>
+						<!-- <a href="#volunteers" class="icon fa-users"><span>Volunteer</span></a> -->
 					</nav>
 
 				<!-- Main -->
@@ -289,7 +289,7 @@
 
 					<!-- Volunteer -->
 
-							<article id="volunteers" class="panel">
+							<!-- <article id="volunteers" class="panel">
 								<header>
 									<h1>
 										<strong>
@@ -326,7 +326,7 @@
 
 								</section>
 
-							</article>
+							</article> -->
 
                         </div>
 

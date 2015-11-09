@@ -129,6 +129,10 @@ class UpdateProjectsController extends Controller {
 		$imageUri = Request::get('imageUri');
         $imageUri = explode(",", $imageUri);
         array_pop($imageUri);
+        foreach($project->images as $image)
+        {
+        	$project->images()->detach($image->id);
+        }
         foreach($imageUri as $image_id)
         {
         	$exists = $project->images->contains($image_id);

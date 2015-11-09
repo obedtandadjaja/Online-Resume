@@ -129,6 +129,10 @@ class UpdateVolunteersController extends Controller {
 		$imageUri = Request::get('imageUri');
         $imageUri = explode(",", $imageUri);
         array_pop($imageUri);
+        foreach($volunteer->images as $image)
+        {
+        	$volunteer->images()->detach($image->id);
+        }
         foreach($imageUri as $image_id)
         {
         	$exists = $volunteer->images->contains($image_id);

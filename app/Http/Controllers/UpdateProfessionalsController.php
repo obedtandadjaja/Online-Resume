@@ -130,6 +130,10 @@ class UpdateProfessionalsController extends Controller {
         $imageUri = Request::get('imageUri');
         $imageUri = explode(",", $imageUri);
         array_pop($imageUri);
+        foreach($professional->images as $image)
+        {
+        	$professional->images()->detach($image->id);
+        }
         foreach($imageUri as $image_id)
         {
         	$exists = $professional->images->contains($image_id);

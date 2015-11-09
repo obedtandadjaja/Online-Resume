@@ -129,6 +129,10 @@ class UpdateFeatsController extends Controller {
 		$imageUri = Request::get('imageUri');
         $imageUri = explode(",", $imageUri);
         array_pop($imageUri);
+        foreach($feat->images as $image)
+        {
+        	$feat->images()->detach($image->id);
+        }
         foreach($imageUri as $image_id)
         {
         	$exists = $feat->images->contains($image_id);

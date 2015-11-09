@@ -66,8 +66,10 @@ class UpdateBioController extends Controller {
 	{
 		$user = User::find($id);
         $images = Image::all();
+        $imageUri = $user->images->lists('id');
+        $imageUri = implode(",", $imageUri) . ",";
 
-		return view('bio.show', compact('user', 'images'));
+		return view('bio.show', compact('user', 'images', 'imageUri'));
 	}
 
 	/**
@@ -94,6 +96,10 @@ class UpdateBioController extends Controller {
         $imageUri = Request::get('imageUri');
         $imageUri = explode(",", $imageUri);
         array_pop($imageUri);
+        foreach($user->images as $image)
+        {
+        	$user->images()->detach($image->id);
+        }
         foreach($imageUri as $image_id)
         {
         	$exists = $user->images->contains($image_id);
