@@ -103,7 +103,7 @@
 					<strong>Pictures:</strong>
 
 					<br/>
-                    @foreach($images as $image)
+                    @foreach($user->imageUri as $image)
                     <img src="{{ $image->location }}">
                     @endforeach
 				</div>

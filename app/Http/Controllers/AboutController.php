@@ -19,51 +19,19 @@ class AboutController extends Controller {
 	public function index()
 	{
 		$user = User::find(1);
-
-        $imageUri = $user->imageUri;
-        $image_array = explode(',', $imageUri);
-        array_pop($image_array);
-        
-        $user_images = array();
-        foreach($image_array as $image_id)
-        {
-            array_push($user_images, Image::find($image_id));
-        }
-        $user->imageUri = $user_images;
+        $user->imageUri = $user->images;
 
 		$feats = Feat::all();
         foreach($feats as $feat)
         {
-            $imageUri = $feat->imageUri;
-            $image_array = explode(',', $imageUri);
-            array_pop($image_array);
-            
-            $array_image = array();
-            foreach($image_array as $image_id)
-            {
-                array_push($array_image, Image::find($image_id));
-            }
-
-            $feat->imageUri = $array_image;
+        	$feat->imageUri = $feat->images;
         }
 
 		$activities = Activity::all();
-        foreach($activities as $activity)
-        {
-            $imageUri = $activity->imageUri;
-            $image_array = explode(',', $imageUri);
-            array_pop($image_array);
-            
-            $array_image = array();
-            foreach($image_array as $image_id)
-            {
-                array_push($array_image, Image::find($image_id));
-            }
-
-            $activity->imageUri = $array_image;
-        }
 
         $images = Image::all();
+
+        // dd($user);
 
 		return view('about', compact('user', 'feats', 'activities', 'images'));
 	}

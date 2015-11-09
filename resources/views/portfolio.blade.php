@@ -20,7 +20,7 @@
 
     <!-- Modal -->
     @foreach ($projects as $project)
-	    <div id="myModal_{{ $project->id }}" class="modal fade" role="dialog">
+	    <div id="myModal_project_{{ $project->id }}" class="modal fade" role="dialog">
 	        <div class="modal-dialog modal-lg">
 	            <!-- Modal content-->
 	            <div class="modal-content">
@@ -71,8 +71,8 @@
 	        </div>
 	    </div>
     @endforeach
-    @foreach ($professionals as $professionals)
-	    <div id="myModal_{{ $professional->id }}" class="modal fade" role="dialog">
+    @foreach ($professionals as $professional)
+	    <div id="myModal_professional_{{ $professional->id }}" class="modal fade" role="dialog">
 	        <div class="modal-dialog modal-lg">
 	            <!-- Modal content-->
 	            <div class="modal-content">
@@ -124,7 +124,7 @@
 	    </div>
     @endforeach
     @foreach ($volunteers as $volunteer)
-	    <div id="myModal_{{ $volunteer->id }}" class="modal fade" role="dialog">
+	    <div id="myModal_volunteer_{{ $volunteer->id }}" class="modal fade" role="dialog">
 	        <div class="modal-dialog modal-lg">
 	            <!-- Modal content-->
 	            <div class="modal-content">
@@ -201,7 +201,7 @@
 								</header>
 								<a href="#professionals" class="jumplink pic">
 									<span class="arrow icon fa-chevron-right"></span>
-									<img src="images/me.jpg" alt="" />
+									<img src="images/shocked.jpg" alt="" />
 								</a>
 							</article>
 
@@ -230,9 +230,12 @@
     												<h2>{{ $professional->time_period }} | {{ $professional->location }}</h2>
     												<p>{{ $professional->description }} <a>Show More</a></p>
                                                 </div>
+                                                @if($professional->imageUri)
                                                 <div class="col-sm-3" style="margin-top: 20px; margin-bottom: 20px">
-                                                    <img src="http://placehold.it/200" class="img-responsive"/>
+                                                    <img src="{{ $professional->imageUri[0]->location }}" class="img-responsive"/>
+                                                    <button type="button" class="btn btn-primary col-sm-12" data-toggle="modal" data-target="#myModal_professional_{{ $professional->id }}">See All Pictures</button>
                                                 </div>
+                                                @endif
 											</div>
 											@endforeach
 		
@@ -267,10 +270,12 @@
     												<h2>{{ $project->time_period }}</h2>
     												<p>{{ $project->description }}</p>
                                                 </div>
+                                                @if($project->imageUri)
                                                 <div class="col-sm-3" style="margin-top: 20px; margin-bottom: 20px">
                                                     <img src="{{ $project->imageUri[0]->location }}" class="img-responsive"/>
-                                                    <button type="button" class="btn btn-primary col-sm-12" data-toggle="modal" data-target="#myModal_{{ $project->id }}">See All Pictures</button>
+                                                    <button type="button" class="btn btn-primary col-sm-12" data-toggle="modal" data-target="#myModal_project_{{ $project->id }}">See All Pictures</button>
                                                 </div>
+                                                @endif
 											</div>
 											@endforeach
 
@@ -307,9 +312,12 @@
     												<h2>{{ $volunteer->time_period }} | {{ $volunteer->cause }}</h2>
     												<p>{{ $volunteer->description }} <a>Show More</a></p>
                                                 </div>
+                                                @if($volunteer->imageUri)
                                                 <div class="col-sm-3" style="margin-top: 20px; margin-bottom: 20px">
-                                                    <img src="http://placehold.it/200" class="img-responsive"/>
+                                                    <img src="{{ $volunteer->imageUri[0]->location }}" class="img-responsive"/>
+                                                    <button type="button" class="btn btn-primary col-sm-12" data-toggle="modal" data-target="#myModal_volunteer_{{ $volunteer->id }}">See All Pictures</button>
                                                 </div>
+                                                @endif
 											</div>
 											@endforeach
 

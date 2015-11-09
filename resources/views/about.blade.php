@@ -54,10 +54,11 @@
                                         </div>
                                         <div class="col-md-7" style="padding-left: 30px">
                                             <br/>
-                                            <h1 style="color: #2980b9" id="user_name"><strong>Obed Tandadjaja</strong></h1>
-                                            <h4 id="occupation">Covenant College 2017</h4>
-                                            <a><h4 id="email_focus">obed.tandadjaja@gmail.com</h4></a>
-                                            <h4>Computer Science Major + Math Minor</h4>
+                                            <h1 style="color: #2980b9" id="user_name"><strong>{{ $user->name }}</strong></h1>
+                                            <h4 id="occupation">{{ $user->occupation }}</h4>
+                                            <a><h4 id="email_focus">{{ $user->email }}</h4></a>
+                                            <h4 id="degree">{{ $user->degrees }}</h4>
+                                            <h4 id="focus"><i>Concentrations: {{ $user->focus }}</i></p>
                                         </div>
                                     </div>
                                 </div>

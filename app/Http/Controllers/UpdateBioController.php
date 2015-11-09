@@ -29,15 +29,9 @@ class UpdateBioController extends Controller {
 	{
 		// Find ME!
 		$user = User::find(1);
-        $imageUri = $user->imageUri;
-        $image_array = explode(',', $imageUri);
-        array_pop($image_array);
-        
-        $images = array();
-        foreach($image_array as $image_id)
-        {
-            array_push($images, Image::find($image_id));
-        }
+        $images = Image::all();
+    	$user_images = $user->images;
+    	$user->imageUri = $user_images;
 
 		return view('bio.index', compact('user', 'images'));
 	}
@@ -89,7 +83,7 @@ class UpdateBioController extends Controller {
 		$user = user::findOrFail($id);
 		$user->age = Request::get('age');
 		$user->religion = Request::get('religion');
-		$user->degree = Request::get('degreee');
+		$user->degree = Request::get('degree');
 		$user->nationality = Request::get('nationality');
 		$user->ethnicity = Request::get('ethnicity');
 		$user->language = Request::get('language');
@@ -97,7 +91,17 @@ class UpdateBioController extends Controller {
         $user->focus = Request::get('focus');
         $user->occupation = Request::get('occupation');
         $user->imageUri = Request::get('imageUri');
-
+        $imageUri = Request::get('imageUri');
+        $imageUri = explode(",", $imageUri);
+        array_pop($imageUri);
+        foreach($imageUri as $image_id)
+        {
+        	$exists = $user->images->contains($image_id);
+        	if(!$exists)
+        	{
+        		$user->images()->attach($image_id);
+        	}
+        }
 		$user->save();
 
 		return redirect('update_bio');
