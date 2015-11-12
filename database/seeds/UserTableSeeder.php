@@ -12,6 +12,7 @@ class UserTableSeeder extends Seeder {
         $faker = Faker\Factory::create('en_GB');
 
         $user = array(
+            'id' => 1,
         	'name' => 'Obed Tandadjaja',
         	'password' => Hash::make('5594737555'),
         	'email' => 'obed.tandadjaja@gmail.com',
