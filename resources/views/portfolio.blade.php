@@ -224,7 +224,7 @@
 											@foreach ($professionals as $professional)
 											<div class="col-sm-12 box" style="margin-bottom: 30px">
                                                 <div class="col-sm-9">
-                                                    <a><h1>{{ $professional->position_title }}</h1></a>
+                                                    <h1>{{ $professional->position_title }}</h1>
     												<h2>{{ $professional->name }}</h2>
     												<h2>{{ $professional->time_period }} | {{ $professional->location }}</h2>
     												<p>{{ $professional->description }}</p>
@@ -235,7 +235,7 @@
                                                     @endif
                                                 </div>
                                                 <div class="col-sm-12">
-	                                                @if(sizeof($professional->imageUri) == 0)
+	                                                @if(sizeof($professional->imageUri) != 0)
 	                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal_professional_{{ $professional->id }}">See Pictures</button>
 	                                                @endif
                                                 </div>

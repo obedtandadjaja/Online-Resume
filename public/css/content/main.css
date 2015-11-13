@@ -1600,12 +1600,12 @@
 	{
 		font-size: 15pt;
 		font-weight: bold;
-		margin: 5px;
+		margin-left: 5px;
 	}
 
 	.box h2
 	{
 		font-size: 13pt;
 		color: grey;
-		margin: 5px;
+		margin-left: 5px;
 	}
