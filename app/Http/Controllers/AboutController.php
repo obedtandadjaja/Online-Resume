@@ -20,6 +20,7 @@ class AboutController extends Controller {
 	{
 		$user = User::find(1);
         $user->imageUri = $user->images;
+        $user->summary = "<p>This is Obed</p><ul><li>Covenant College</li><li>hello</li></ul>";
 
 		$feats = Feat::all();
         foreach($feats as $feat)

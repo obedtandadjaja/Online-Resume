@@ -41,7 +41,9 @@
 								</header>
 								<a href="#summary" class="jumplink pic">
 									<span class="arrow icon fa-chevron-right"></span>
+									@if(sizeof($user->imageUri) != 0)
 									<img src="{{ $user->imageUri[0]->location }}" alt="" style="max-width:500px" />
+									@endif
 								</a>
 							</article>
 
@@ -50,7 +52,9 @@
                                 <div class="col-sm-12" style="margin-bottom: 20px">
                                     <div class="col-sm-offset-1 col-sm-10" id="profile">
                                         <div class="col-sm-5" style="padding-left: 0px">
+                                        	@if(sizeof($user->imageUri) >= 2)
                                             <img src="{{ $user->imageUri[1]->location }}" style="border-radius: 50%" class="img-responsive" id="profile_picture"/>
+                                            @endif
                                         </div>
                                         <div class="col-md-7" style="padding-left: 30px">
                                             <br/>
@@ -58,14 +62,16 @@
                                             <h4 id="occupation">{{ $user->occupation }}</h4>
                                             <a><h4 id="email_focus">{{ $user->email }}</h4></a>
                                             <h4 id="degree">{{ $user->degrees }}</h4>
-                                            <h4 id="focus"><i>Concentrations: {{ $user->focus }}</i></p>
+                                            <h4 id="focus">Focus: {{ $user->focus }}</p>
                                         </div>
                                     </div>
                                 </div>
-                                <p id="bio" class="col-sm-offset-1 col-sm-10" style="margin-top: 20px; display:none"><strong>Summary:</strong><br/>{!! $user->summary !!}</p>
-                                <div class="col-sm-12 text-center" id="button_group" style="display:none">
-                                    <a href="/portfolio"><button id="go_to_portfolio" class="btn btn-primary" style="margin-top: 50px">Go To My Portfolio</button></a>
-                                    <button id="go_to_feats" class="btn btn-primary" style="margin-top: 50px">See My Achievements</button>
+                                <div id="bio" class="col-sm-offset-1 col-sm-10" style="margin-top: 20px; display:none"><strong>Summary:</strong><br/>
+                                {!! $user->summary !!}
+                                </div>
+                                <div class="col-sm-12 text-center" id="button_group" style="display:none; margin-top: 50px">
+                                    <a href="/portfolio"><button id="go_to_portfolio" class="btn btn-primary">Go To My Portfolio</button></a>
+                                    <button id="go_to_feats" class="btn btn-warning">See My Achievements</button>
                                 </div>
                                 <button id="tell_me_more" class="btn btn-primary col-sm-offset-1 col-sm-10" style="margin-top: 50px">Tell Me More About Obed</button>
 
@@ -81,7 +87,7 @@
 											<h1>{{ $feat->name }}</h1>
 											<h2>{{ $feat->issuer }}</h2>
 											<h2>{{ $feat->time_period }}</h2>
-											<p>{{ $feat->description }}</p>
+											<p>{!! $feat->description !!}</p>
 										</div>
 										<div class="col-sm-3 box">
 											@if($feat->logo)
@@ -103,7 +109,7 @@
 									<div class="col-sm-12 box" style="margin-bottom: 30px">
 										<h1>{{ $activity->name }}</h1>
 										<h2>{{ $activity->time_period }}</h2>
-										<p>{{ $activity->description }}</p>
+										<p>{!! $activity->description !!}</p>
 									</div>
 								@endforeach
 							</article>

@@ -196,7 +196,6 @@
 							<article id="me" class="panel">
 								<header>
 									<h1>Welcome To My Portfolio</h1>
-									<p>Get Started!</p>
 								</header>
 								<a href="#professionals" class="jumplink pic">
 									<span class="arrow icon fa-chevron-right"></span>
@@ -208,9 +207,7 @@
 							<article id="professionals" class="panel">
 								<header>
 									<h1>
-										<strong>
-											Professional Experience
-										</strong>
+										Professional Experience
 									</h1>
 								</header>
 
@@ -227,7 +224,7 @@
                                                     <h1>{{ $professional->position_title }}</h1>
     												<h2>{{ $professional->name }}</h2>
     												<h2>{{ $professional->time_period }} | {{ $professional->location }}</h2>
-    												<p>{{ $professional->description }}</p>
+    												<p>{!! $professional->description !!}</p>
                                                 </div>
                                                 <div class="col-sm-3" style="margin-top: 20px; margin-bottom: 20px">
                                                     @if($professional->logo)
@@ -254,9 +251,7 @@
 							<article id="projects" class="panel">
 								<header>
 									<h1>
-										<strong>
-											Projects
-										</strong>
+										Projects
 									</h1>
 								</header>
 
@@ -271,7 +266,7 @@
                                                 <div class="col-sm-9">
     												<a><h1>{{ $project->name }}</h1></a>
     												<h2>{{ $project->time_period }}</h2>
-    												<p>{{ $project->description }}</p>
+    												<p>{!! $project->description !!}</p>
                                                 </div>
                                                 <div class="col-sm-3" style="margin-top: 20px; margin-bottom: 20px">
                                                 	@if($project->logo)

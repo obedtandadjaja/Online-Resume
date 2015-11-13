@@ -13,7 +13,6 @@
 		margin: 0;
 		padding: 0;
 		border: 0;
-		font-size: 100%;
 		font: inherit;
 		vertical-align: baseline;
 	}
@@ -27,7 +26,8 @@
 	}
 
 	ol, ul {
-		list-style: none;
+		list-style: inherit;
+		list-style-position: inside;
 	}
 
 	blockquote, q {
@@ -811,7 +811,7 @@
 	}
 
 	p, ul, ol, dl, table, blockquote, form {
-		margin-bottom: 2em;
+		margin-bottom: 0.25em;
 	}
 
 /* Table */
@@ -1160,17 +1160,22 @@
 			}
 
 			h1 {
-				font-size: 2.0em;
+				font-size: 1.5em;
 				letter-spacing: -0.015em;
 			}
 
 			h2 {
-				font-size: 1.8em;
+				font-size: 1.15em;
 				letter-spacing: -0.015em;
 			}
 
 			h3, h4, h5, h6 {
-				font-size: 1.25em;
+				font-size: 1.00em;
+				letter-spacing: -0.015em;
+			}
+
+			p {
+				font-size: 0.75em;
 				letter-spacing: -0.015em;
 			}
 
@@ -1445,7 +1450,12 @@
 			}
 
 			h3, h4, h5, h6 {
-				font-size: 1.25em;
+				font-size: 1.15em;
+				letter-spacing: -0.025em;
+			}
+
+			p {
+				font-size: 1.0em;
 				letter-spacing: -0.025em;
 			}
 
@@ -1590,10 +1600,15 @@
 	margin-bottom: 5px;
 }
 
-	.box p, h3, h4
+	.box h3, h4
+	{
+		font-size: 14pt;
+		margin: 5px;
+	}
+
+	.box p
 	{
 		font-size: 12pt;
-		margin: 5px;
 	}
 
 	.box ul ol li
@@ -1613,5 +1628,12 @@
 	{
 		font-size: 13pt;
 		color: grey;
+		margin-left: 5px;
+	}
+
+	#bio p, ul, li, ol
+	{
+		font-size: 12pt;
+		font-weight: 100;
 		margin-left: 5px;
 	}
