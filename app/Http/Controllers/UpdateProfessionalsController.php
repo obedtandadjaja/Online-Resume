@@ -123,7 +123,6 @@ class UpdateProfessionalsController extends Controller {
 	 */
 	public function edit($id)
 	{
-		dd(Input::file('image'));
 		$professional = Professional::findOrFail($id);
 		$professional->name = Request::get('name');
 		$professional->position_title = Request::get('position_title');

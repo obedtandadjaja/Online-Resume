@@ -1596,6 +1596,12 @@
 		margin: 5px;
 	}
 
+	.box ul ol li
+	{
+		font-size: 12pt;
+		margin-left: 5px;
+	}
+
 	.box h1
 	{
 		font-size: 15pt;
