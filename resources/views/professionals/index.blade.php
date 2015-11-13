@@ -50,6 +50,13 @@
 									{!! Form::textarea('description', '', ['class' => 'form-control', 'rows' => '4']) !!}
 								</div>
 							</div>
+							<div class="form-group">
+                                <label class="col-md-4 control-label">Logo:</label>
+                                <div class="col-md-6">
+                                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Select Pictures</button>
+                                    {!! Form::text('logo', '', ['class' => 'form-control', 'id' => 'imageUri']) !!}
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Pictures:</label>
                                 <div class="col-md-6">
@@ -93,6 +100,14 @@
 						</div>
 
                         <!-- Picture -->
+
+						@if(isset($professional->logo))
+                        <div class="panel-body">
+                    		<strong>Logo:</strong>
+                    		<br/>
+                    		<img src="{{ $professional->logo->location }}" />
+                        </div>
+                        @endif
 
                         <div class="panel-body">
                             @if(isset($professional->imageUri))

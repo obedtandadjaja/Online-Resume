@@ -23,13 +23,16 @@ class PortfolioController extends Controller {
         {
             $professional_images = $professional->images;
             $professional->imageUri = $professional_images;
+            $professional->logo = Image::find($professional->logo);
         }
+        // dd(sizeof($professional->imageUri));
 
 		$volunteers = Volunteer::all();
 		foreach($volunteers as $volunteer)
         {
             $volunteer_images = $volunteer->images;
             $volunteer->imageUri = $volunteer_images;
+            $volunteer->logo = Image::find($volunteer->logo);
         }
 
 		$projects = Project::all();
@@ -37,6 +40,7 @@ class PortfolioController extends Controller {
         {
             $project_images = $project->images;
             $project->imageUri = $project_images;
+            $project->logo = Image::find($project->logo);
         }
 
 		return view('portfolio', compact('professionals', 'volunteers', 'projects'));

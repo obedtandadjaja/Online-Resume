@@ -45,6 +45,13 @@
 								</div>
 							</div>
 							<div class="form-group">
+                                <label class="col-md-4 control-label">Logo:</label>
+                                <div class="col-sm-6">
+                                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Select Pictures</button>
+                                    {!! Form::text('logo', $professional->logo, ['class' => 'form-control', 'id' => 'imageUri']) !!}
+                                </div>
+                            </div>
+							<div class="form-group">
                                 <label class="col-md-4 control-label">Pictures:</label>
                                 <div class="col-sm-6">
                                     <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Select Pictures</button>

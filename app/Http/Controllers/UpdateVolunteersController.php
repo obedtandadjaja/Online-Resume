@@ -30,6 +30,7 @@ class UpdateVolunteersController extends Controller {
         {
             $volunteer_images = $volunteer->images;
             $volunteer->imageUri = $volunteer_images;
+            $volunteer->logo = Image::find($volunteer->logo);
         }
 
 		return view('volunteers.index', compact('volunteers', 'images'));
@@ -126,6 +127,7 @@ class UpdateVolunteersController extends Controller {
 		$volunteer->time_period = Request::get('time_period');
 		$volunteer->description = Request::get('description');
         $volunteer->imageUri = Request::get('imageUri');
+        $volunteer->logo = Request::get('logo');
 		$imageUri = Request::get('imageUri');
         $imageUri = explode(",", $imageUri);
         array_pop($imageUri);

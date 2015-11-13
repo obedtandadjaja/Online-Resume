@@ -30,6 +30,7 @@ class UpdateFeatsController extends Controller {
         {
             $feat_images = $feat->images;
             $feat->imageUri = $feat_images;
+            $feat->logo = Image::find($feat->logo);
         }
 
 		return view('feats.index', compact('feats', 'images'));
@@ -126,6 +127,7 @@ class UpdateFeatsController extends Controller {
 		$feat->time_period = Request::get('time_period');
 		$feat->description = Request::get('description');
         $feat->imageUri = Request::get('imageUri');
+        $feat->logo = Request::get('logo');
 		$imageUri = Request::get('imageUri');
         $imageUri = explode(",", $imageUri);
         array_pop($imageUri);

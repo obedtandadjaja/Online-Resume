@@ -16,7 +16,7 @@ class Volunteer extends Model {
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['name', 'role', 'cause', 'description', 'time_period', 'imageUri'];
+	protected $fillable = ['name', 'role', 'cause', 'description', 'time_period', 'imageUri', 'logo'];
 
 	public function images()
     {

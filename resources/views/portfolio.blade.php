@@ -10,9 +10,8 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="{{ URL::asset('css/content/main.css') }}" />
-		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="{{ URL::asset('css/content/main.css') }}" />
 		<noscript><link rel="stylesheet" href="{{ URL::asset('css/content/noscript.css') }}" /></noscript>
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 	</head>
@@ -161,7 +160,7 @@
 	                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" style="color: #999999"></span>
 	                            <span class="sr-only">Previous</span>
 	                        </a>
-	                        <a class="right carousel-control" href="#myCarousel_volunteer_{{ $project->id }}" role="button" data-slide="next" style="background:transparent">
+	                        <a class="right carousel-control" href="#myCarousel_volunteer_{{ $volunteer->id }}" role="button" data-slide="next" style="background:transparent">
 	                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true" style="color: #999999"></span>
 	                            <span class="sr-only">Next</span>
 	                        </a>
@@ -201,7 +200,7 @@
 								</header>
 								<a href="#professionals" class="jumplink pic">
 									<span class="arrow icon fa-chevron-right"></span>
-									<img src="images/shocked.jpg" alt="" />
+									<img src="" alt=""/>
 								</a>
 							</article>
 
@@ -228,14 +227,18 @@
                                                     <a><h1>{{ $professional->position_title }}</h1></a>
     												<h2>{{ $professional->name }}</h2>
     												<h2>{{ $professional->time_period }} | {{ $professional->location }}</h2>
-    												<p>{{ $professional->description }} <a>Show More</a></p>
+    												<p>{{ $professional->description }}</p>
                                                 </div>
-                                                @if($professional->imageUri)
                                                 <div class="col-sm-3" style="margin-top: 20px; margin-bottom: 20px">
-                                                    <img src="{{ $professional->imageUri[0]->location }}" class="img-responsive"/>
-                                                    <button type="button" class="btn btn-primary col-sm-12" data-toggle="modal" data-target="#myModal_professional_{{ $professional->id }}">See All Pictures</button>
+                                                    @if($professional->logo)
+                                                    <img src="{{ $professional->logo->location }}" class="img-responsive" height="200px" width="200px" />
+                                                    @endif
                                                 </div>
-                                                @endif
+                                                <div class="col-sm-12">
+	                                                @if(sizeof($professional->imageUri) == 0)
+	                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal_professional_{{ $professional->id }}">See Pictures</button>
+	                                                @endif
+                                                </div>
 											</div>
 											@endforeach
 		
@@ -270,12 +273,14 @@
     												<h2>{{ $project->time_period }}</h2>
     												<p>{{ $project->description }}</p>
                                                 </div>
-                                                @if($project->imageUri)
                                                 <div class="col-sm-3" style="margin-top: 20px; margin-bottom: 20px">
-                                                    <img src="{{ $project->imageUri[0]->location }}" class="img-responsive"/>
-                                                    <button type="button" class="btn btn-primary col-sm-12" data-toggle="modal" data-target="#myModal_project_{{ $project->id }}">See All Pictures</button>
+                                                	@if($project->logo)
+                                                    <img src="{{ $project->logo->location }}" class="img-responsive"/>
+                                                    @endif
                                                 </div>
-                                                @endif
+                                                @if(sizeof($project->imageUri) != 0)
+                                                <button type="button" class="btn btn-primary col-sm-12" data-toggle="modal" data-target="#myModal_project_{{ $project->id }}">See All Pictures</button>
+                                            	@endif
 											</div>
 											@endforeach
 
@@ -312,9 +317,9 @@
     												<h2>{{ $volunteer->time_period }} | {{ $volunteer->cause }}</h2>
     												<p>{{ $volunteer->description }} <a>Show More</a></p>
                                                 </div>
-                                                @if($volunteer->imageUri)
+                                                @if($volunteer->logo)
                                                 <div class="col-sm-3" style="margin-top: 20px; margin-bottom: 20px">
-                                                    <img src="{{ $volunteer->imageUri[0]->location }}" class="img-responsive"/>
+                                                    <img src="{{ $volunteer->logo->location }}" class="img-responsive"/>
                                                     <button type="button" class="btn btn-primary col-sm-12" data-toggle="modal" data-target="#myModal_volunteer_{{ $volunteer->id }}">See All Pictures</button>
                                                 </div>
                                                 @endif

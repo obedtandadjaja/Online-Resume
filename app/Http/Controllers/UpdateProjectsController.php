@@ -30,6 +30,7 @@ class UpdateProjectsController extends Controller {
         {
             $project_images = $project->images;
             $project->imageUri = $project_images;
+            $project->logo = Image::find($project->logo);
         }
 
 		return view('projects.index', compact('projects', 'images'));
@@ -126,6 +127,7 @@ class UpdateProjectsController extends Controller {
 		$project->time_period = Request::get('time_period');
 		$project->description = Request::get('description');
         $project->imageUri = Request::get('imageUri');
+        $project->logo = Request::get('logo');
 		$imageUri = Request::get('imageUri');
         $imageUri = explode(",", $imageUri);
         array_pop($imageUri);

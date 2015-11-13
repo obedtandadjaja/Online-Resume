@@ -25,6 +25,7 @@ class AboutController extends Controller {
         foreach($feats as $feat)
         {
         	$feat->imageUri = $feat->images;
+        	$feat->logo = Image::find($feat->logo);
         }
 
 		$activities = Activity::all();

@@ -62,7 +62,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <p id="bio" class="col-sm-offset-1 col-sm-10" style="margin-top: 20px; display:none"><strong>Summary:</strong><br/>{{ $user->summary }}</p>
+                                <p id="bio" class="col-sm-offset-1 col-sm-10" style="margin-top: 20px; display:none"><strong>Summary:</strong><br/>{!! $user->summary !!}</p>
                                 <div class="col-sm-12 text-center" id="button_group" style="display:none">
                                     <a href="/portfolio"><button id="go_to_portfolio" class="btn btn-primary" style="margin-top: 50px">Go To My Portfolio</button></a>
                                     <button id="go_to_feats" class="btn btn-primary" style="margin-top: 50px">See My Achievements</button>
@@ -77,11 +77,16 @@
 									<h2>Feats | Achievements</h2>
 									<hr/>
 									@foreach ($feats as $feat)
-										<div class="col-sm-12 box" style="margin-bottom: 30px">
+										<div class="col-sm-9 box" style="margin-bottom: 30px">
 											<h1>{{ $feat->name }}</h1>
 											<h2>{{ $feat->issuer }}</h2>
 											<h2>{{ $feat->time_period }}</h2>
 											<p>{{ $feat->description }}</p>
+										</div>
+										<div class="col-sm-3 box">
+											@if($feat->logo)
+	                                        <img src="{{ $feat->logo->location }}" class="img-responsive" height="200px" width="200px" />
+	                                        @endif
 										</div>
 									@endforeach
 								</header>

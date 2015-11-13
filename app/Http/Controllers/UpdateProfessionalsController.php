@@ -30,6 +30,7 @@ class UpdateProfessionalsController extends Controller {
         {
         	$professional_images = $professional->images;
         	$professional->imageUri = $professional_images;
+        	$professional->logo = Image::find($professional->logo);
         }
 
 		return view('professionals.index', compact('professionals', 'images'));
@@ -53,7 +54,10 @@ class UpdateProfessionalsController extends Controller {
 	public function store()
 	{
 		$input = Input::all();
+
+        // creates professional
 		$professional = Professional::create($input);
+
 		$imageUri = Input::get('imageUri');
 		$image_array = explode(',', $imageUri);
         array_pop($image_array);
@@ -65,7 +69,6 @@ class UpdateProfessionalsController extends Controller {
         		$professional->images()->attach($image_id);
         	}
         }
-
 		foreach(Input::file('image') as $file)
         {
         	if($file)
@@ -127,6 +130,7 @@ class UpdateProfessionalsController extends Controller {
 		$professional->location = Request::get('location');
 		$professional->time_period = Request::get('time_period');
 		$professional->description = Request::get('description');
+		$professional->logo = Request::get('logo');
         $imageUri = Request::get('imageUri');
         $imageUri = explode(",", $imageUri);
         array_pop($imageUri);

@@ -16,7 +16,7 @@ class Professional extends Model {
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['name', 'description', 'time_period', 'position_title', 'location', 'imageUri'];
+	protected $fillable = ['name', 'description', 'time_period', 'position_title', 'location', 'imageUri', 'logo'];
 
 	public function images()
     {

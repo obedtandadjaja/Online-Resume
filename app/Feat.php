@@ -16,7 +16,7 @@ class Feat extends Model {
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['name', 'occupation', 'issuer', 'description', 'time_period', 'imageUri'];
+	protected $fillable = ['name', 'occupation', 'issuer', 'description', 'time_period', 'imageUri', 'logo'];
 
 	public function images()
     {

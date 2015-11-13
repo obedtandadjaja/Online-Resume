@@ -23,6 +23,7 @@ class CreateProfessionalsTable extends Migration {
 			$table->date('created_at');
 			$table->date('updated_at');
             $table->text('imageUri');
+            $table->text('logo');
 		});
 	}
 

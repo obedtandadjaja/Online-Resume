@@ -23,6 +23,7 @@ class CreateProjectsTable extends Migration {
 			$table->text('description');
 			$table->date('created_at');
 			$table->date('updated_at');
+			$table->text('logo');
 		});
 	}
 

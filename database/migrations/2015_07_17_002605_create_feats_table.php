@@ -23,6 +23,7 @@ class CreateFeatsTable extends Migration {
 			$table->date('updated_at');
 			$table->date('created_at');
 			$table->text('imageUri');
+			$table->text('logo');
 		});
 	}
 
