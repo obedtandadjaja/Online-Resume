@@ -57,7 +57,6 @@
                                             @endif
                                         </div>
                                         <div class="col-md-7" style="padding-left: 30px">
-                                            <br/>
                                             <h1 style="color: #2980b9" id="user_name"><strong>{{ $user->name }}</strong></h1>
                                             <h4 id="occupation">{{ $user->occupation }}</h4>
                                             <h4 id="degree">{{ $user->degree }}</h4>
