@@ -22,18 +22,15 @@
 
 				<!-- Header -->
 					<header id="header">
-						<h1>Obed Josiah Tandadjaja</h1>
-						<p style="color:white">A Programmer's Humble Resume</p>
+						<h1>OBED JOSIAH TANDADJAJA</h1>
+						<p style="color:white">a Programmer's Humble Resume</p>
 						<nav>
 							<ul>
-								<li><a href="portfolio"><img src="images/landing_folder.png" class="circle" id="portfolio"></a></li>
-								<li><a href="about"><img src="images/landing_person.png" class="circle" id="aboutMe"></a></li>
-								<li><a href="contact"><img src="images/landing_phone.png" class="circle" id="contactMe"></a></li>
-							</ul>
-							<ul>
-								<li><p class="textbox" id="portfolioText">Portfolio</p></li>
-								<li><p class="textbox" id="aboutMeText">About</p></li>
-								<li><p class="textbox" id="contactMeText">Contact</p></li>
+								<li><a href="portfolio">Portfolio</a></li>
+								<li>.</li>
+								<li><a href="about">About</a></li>
+								<li>.</li>
+								<li><a href="contact">Contact</a></li>
 							</ul>
 						</nav>
 					</header>
@@ -53,48 +50,6 @@
 			window.onload = function() { document.body.className = ''; }
 			window.ontouchmove = function() { return false; }
 			window.onorientationchange = function() { document.body.scrollTop = 0; }
-		</script>
-		<script>
-			$(document).ready(function(){
-				
-				$('#portfolio').hover(
-					function()
-					{
-						$(this).fadeTo(200, 1).animate({height: 110+'px', width: 110+'px', borderWidth: 4}, 200);
-						$('#portfolioText').css('color', 'yellow');
-					},
-    				function()
-    				{
-    					$(this).fadeTo(200, 0.5).animate({height: 100+'px', width: 100+'px', borderWidth: 2}, 200);
-    					$('#portfolioText').css('color', 'black');
-    				}
-    			);
-				$('#aboutMe').hover(
-					function()
-					{
-						$(this).fadeTo(200, 1).animate({height: 110+'px', width: 110+'px', borderWidth: 4}, 200);
-						$('#aboutMeText').css('color', 'yellow');
-					},
-    				function()
-    				{
-    					$(this).fadeTo(200, 0.5).animate({height: 100+'px', width: 100+'px', borderWidth: 2}, 200);
-    					$('#aboutMeText').css('color', 'black');
-    				}
-    			);
-				$('#contactMe').hover(
-					function()
-					{
-						$(this).fadeTo(200, 1).animate({height: 110+'px', width: 110+'px', borderWidth: 4}, 200);
-						$('#contactMeText').css('color', 'yellow');
-					},
-    				function()
-    				{
-    					$(this).fadeTo(200, 0.5).animate({height: 100+'px', width: 100+'px', borderWidth: 2}, 200);
-    					$('#contactMeText').css('color', 'black');
-    				}
-    			);
-
-			});
 		</script>
 	</body>
 </html>

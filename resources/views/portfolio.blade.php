@@ -175,6 +175,18 @@
 	    </div>
     @endforeach
 
+    		<div class="header">
+    			<p>
+    			<a href="/">Home</a>
+    			<a>|</a>
+    			<a href="/portfolio">Portfolio</a>
+    			<a>|</a>
+    			<a href="/about">About</a>
+    			<a>|</a>
+    			<a href="/contact">Contact</a>
+    			</p>
+    		</div>
+
 		<!-- Wrapper-->
 			<div id="wrapper">
 
@@ -182,9 +194,11 @@
 
 				<!-- Nav -->
 					<nav id="nav">
-						<a href="#me" class="icon fa-folder-open active"><span>Portfolio</span></a>
-						<a href="#professionals" class="icon fa-briefcase"><span>Professional</span></a>
-						<a href="#projects" class="icon fa-pencil-square-o"><span>Project</span></a>
+						<a href="#me" class="active"><p>Portfolio</p></a>
+						<a><p>|</p></a>
+						<a href="#professionals"><p>Professional Experience</p></a>
+						<a><p>|</p></a>
+						<a href="#projects"><p>Personal Projets</p></a>
 						<!-- <a href="#volunteers" class="icon fa-users"><span>Volunteer</span></a> -->
 					</nav>
 
@@ -195,7 +209,9 @@
 						<!-- Intro -->
 							<article id="me" class="panel">
 								<header>
-									<h1>Welcome To My Portfolio</h1>
+									<h1>Welcome to my portfolio</h1>
+									<hr/>
+									<p>Get Started!</p>
 								</header>
 								<a href="#professionals" class="jumplink pic">
 									<span class="arrow icon fa-chevron-right"></span>
@@ -333,12 +349,15 @@
 				<!-- Footer -->
 					<div id="footer">
                         <ul class="copyright">
-                            <li><a href="/">Home</a></li>
                             <li><a href="#">Back To Top</a></li>
                         </ul>
                     </div>
-
 			</div>
+
+			<div class="footer">
+            	<p class="pull-left">Obed Josiah Tandadjaja</p>
+            	<p class="pull-right">www.obedtandadjaja.com</p>
+            </div>
             
 		<!-- Scripts -->
 			<script src="{{ URL::asset('js/content/jquery.min.js') }}"></script>

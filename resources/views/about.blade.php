@@ -17,6 +17,18 @@
 	</head>
 	<body>
 
+			<div class="header">
+    			<p>
+    			<a href="/">Home</a>
+    			<a>|</a>
+    			<a href="/portfolio">Portfolio</a>
+    			<a>|</a>
+    			<a href="/about">About</a>
+    			<a>|</a>
+    			<a href="/contact">Contact</a>
+    			</p>
+    		</div>
+
 		<!-- Wrapper-->
 			<div id="wrapper">
 
@@ -24,10 +36,13 @@
 
 				<!-- Nav -->
 					<nav id="nav">
-						<a href="#me" class="icon fa-user active"><span>Bio</span></a>
-						<a href="#summary" class="icon fa-file"><span>Overview</span></a>
-						<a href="#feats" id="feats_button" class="icon fa-graduation-cap"><span>Feats</span></a>
-						<a href="#activities" class="icon fa-child"><span>Activities</span></a>
+						<a href="#me" class="active"><p>Bio</p></a>
+						<a><p>|</p></a>
+						<a href="#summary"><p>Overview</p></a>
+						<a><p>|</p></a>
+						<a href="#feats"><p>Feats</p></a>
+						<a><p>|</p></a>
+						<a href="#activities"><p>Activities</p></a>
 					</nav>
 
 				<!-- Main -->
@@ -36,8 +51,9 @@
 						<!-- Overview -->
 							<article id="me" class="panel">
 								<header>
-									<h1>{{ $user->name }}</h1>
-									<p style="font-size: 100%">Student Programmer</p>
+									<h1>OBED TANDADJAJA</h1>
+									<hr/>
+									<p>Student Programmer</p>
 								</header>
 								<a href="#summary" class="jumplink pic">
 									<span class="arrow icon fa-chevron-right"></span>
@@ -117,12 +133,17 @@
 				<!-- Footer -->
 					<div id="footer">
 						<ul class="copyright">
-							<li><a href="/">Home</a></li>
+							<!-- <li><a href="/">Home</a></li> -->
                             <li><a href="#">Back To Top</a></li>
 						</ul>
 					</div>
 
 			</div>
+
+			<div class="footer">
+            	<p class="pull-left">Obed Josiah Tandadjaja</p>
+            	<p class="pull-right">www.obedtandadjaja.com</p>
+            </div>
 
 		<!-- Scripts -->
 			<script src="{{ URL::asset('js/content/jquery.min.js') }}"></script>

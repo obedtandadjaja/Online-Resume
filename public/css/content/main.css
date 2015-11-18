@@ -14,6 +14,7 @@
 		padding: 0;
 		border: 0;
 		font: inherit;
+		font-family: inherit;
 		vertical-align: baseline;
 	}
 
@@ -811,7 +812,7 @@
 	}
 
 	p, ul, ol, dl, table, blockquote, form {
-		margin-bottom: 0.25em;
+		margin-bottom: 0.10em;
 	}
 
 /* Table */
@@ -1060,14 +1061,19 @@
 		position: relative;
 		display: inline-block;
 		color: #ffffff;
-		width: 1em;
-		height: 1em;
+		/*width: 1em;*/
+		/*height: 1em;*/
 		line-height: 0.9em;
 	}
 
 		#nav a.icon:before {
 			padding-right: 0;
 		}
+
+	#nav p {
+		font-size: 0.35em;
+		letter-spacing: -0.015em;
+	}
 
 /* Panels */
 
@@ -1228,7 +1234,7 @@
 		/* Wrapper */
 
 			#wrapper {
-				width: 45em;
+				width: 52em;
 				margin: 0 auto;
 				opacity: 0.00001;
 			}
@@ -1240,15 +1246,14 @@
 		/* Nav */
 
 			#nav {
-				text-align: center;
-				height: 4.25em;
+				height: 3.0em;
 				cursor: default;
 			}
 
 				#nav a {
 					font-size: 2.5em;
 					margin: 0 0.25em 0 0.25em;
-					opacity: 0.35;
+					opacity: 0.5;
 					outline: 0;
 					-moz-transition: opacity .25s ease-in-out;
 					-webkit-transition: opacity .25s ease-in-out;
@@ -1320,13 +1325,13 @@
 					}
 
 						#nav a.active:after {
-							border-bottom-width: 0.5em;
+							border-bottom-width: 0.75em;
 						}
 
 		/* Panels */
 
 			#main {
-				width: 45em;
+				width: 52em;
 				background: white;
 				box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.25);
 			}
@@ -1336,7 +1341,7 @@
 				position: absolute;
 				top: 0;
 				left: 0;
-				width: 45em;
+				width: 52em;
 			}
 
 		/* Me */
@@ -1418,16 +1423,25 @@
 						position: absolute;
 						left: 0;
 						top: 52.5%;
-						font-size: 1.5em;
-						letter-spacing: -0.015em;
-						margin-top: 0;
+						color: black;
+						font: 1em;
+					}
+
+					#me header > hr {
+						position: absolute;
+						left: 0;
+						top: 52.5%;
+						border: solid 1px black;
+						width: 25em;
+						margin: 0 0 0 0;
+						padding: 0 0 0 0;
 					}
 
 		/* Footer */
 
 			#footer {
 				text-align: center;
-				padding: 2em 0 0 0;
+				padding: 0.5em 0 0 0;
 				font-size: 0.75em;
 			}
 
@@ -1636,4 +1650,43 @@
 		font-size: 12pt;
 		font-weight: 100;
 		margin-left: 5px;
+	}
+
+.header {
+	position: absolute;
+	width: 100%;
+	text-align: right;
+}
+
+	.header p{
+		font-weight: 300;
+		padding-left: 10px;
+	}
+	.header a{
+		color: white;
+		letter-spacing: -0.015em;
+		padding: 0 10px 0 5px;
+		outline: 0;
+		opacity: 0.6;
+		-moz-transition: opacity .25s ease-in-out;
+		-webkit-transition: opacity .25s ease-in-out;
+		-ms-transition: opacity .25s ease-in-out;
+		transition: opacity .25s ease-in-out;
+	}
+
+	.header a:hover {
+		opacity: 1;
+	}
+
+.footer {
+	  position: relative;
+	  width: 52em;
+	  /* Set the fixed height of the footer here */
+	  height: 50px;
+	  margin: 0 auto;
+}
+	.footer p {
+		color: white;
+		font-weight: 300;
+		opacity: 0.8;
 	}
