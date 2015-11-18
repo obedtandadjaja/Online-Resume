@@ -60,8 +60,7 @@
                                             <br/>
                                             <h1 style="color: #2980b9" id="user_name"><strong>{{ $user->name }}</strong></h1>
                                             <h4 id="occupation">{{ $user->occupation }}</h4>
-                                            <a><h4 id="email_focus">{{ $user->email }}</h4></a>
-                                            <h4 id="degree">{{ $user->degrees }}</h4>
+                                            <h4 id="degree">{{ $user->degree }}</h4>
                                             <h4 id="focus">Focus: {{ $user->focus }}</p>
                                         </div>
                                     </div>

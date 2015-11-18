@@ -233,7 +233,7 @@
                                                 </div>
                                                 <div class="col-sm-12">
 	                                                @if(sizeof($professional->imageUri) != 0)
-	                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal_professional_{{ $professional->id }}">See Pictures</button>
+	                                                <button type="button" class="btn btn-primary col-sm-3 pull-right" data-toggle="modal" data-target="#myModal_professional_{{ $professional->id }}">See Pictures</button>
 	                                                @endif
                                                 </div>
 											</div>
@@ -274,7 +274,7 @@
                                                     @endif
                                                 </div>
                                                 @if(sizeof($project->imageUri) != 0)
-                                                <button type="button" class="btn btn-primary col-sm-12" data-toggle="modal" data-target="#myModal_project_{{ $project->id }}">See All Pictures</button>
+                                                <button type="button" class="btn btn-primary col-sm-3 pull-right" data-toggle="modal" data-target="#myModal_project_{{ $project->id }}">See All Pictures</button>
                                             	@endif
 											</div>
 											@endforeach
