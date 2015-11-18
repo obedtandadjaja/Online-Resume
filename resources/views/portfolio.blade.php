@@ -206,9 +206,9 @@
 						<!-- Professional -->
 							<article id="professionals" class="panel">
 								<header>
-									<h1>
+									<h2>
 										Professional Experience
-									</h1>
+									</h2>
 								</header>
 
 								<hr/>
@@ -250,9 +250,9 @@
 					<!-- Projects -->
 							<article id="projects" class="panel">
 								<header>
-									<h1>
+									<h2>
 										Projects
-									</h1>
+									</h2>
 								</header>
 
 								<hr/>
