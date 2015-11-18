@@ -36,7 +36,7 @@
 						<!-- Overview -->
 							<article id="me" class="panel">
 								<header>
-									<h1>{{ $user->name }}</h1>
+									<strong><h1>{{ $user->name }}</h1></strong>
 									<p>Student Programmer</p>
 								</header>
 								<a href="#summary" class="jumplink pic">
