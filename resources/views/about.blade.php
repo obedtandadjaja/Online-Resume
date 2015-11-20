@@ -97,16 +97,18 @@
 									<h2>Feats | Achievements</h2>
 									<hr/>
 									@foreach ($feats as $feat)
-										<div class="col-sm-9 box" style="margin-bottom: 30px">
-											<h1>{{ $feat->name }}</h1>
-											<h2>{{ $feat->issuer }}</h2>
-											<h2>{{ $feat->time_period }}</h2>
-											<p>{!! $feat->description !!}</p>
-										</div>
-										<div class="col-sm-3 box">
-											@if($feat->logo)
-	                                        <img src="{{ $feat->logo->location }}" class="img-responsive" height="100px" width="100px" />
-	                                        @endif
+										<div class="col-sm-12 box" style="margin-bottom: 30px">
+											<div class="col-sm-9">
+												<h1>{{ $feat->name }}</h1>
+												<h2>{{ $feat->issuer }}</h2>
+												<h2>{{ $feat->time_period }}</h2>
+												<p>{!! $feat->description !!}</p>
+											</div>
+											<div class="col-sm-3">
+												@if($feat->logo)
+		                                        <img src="{{ $feat->logo->location }}" class="img-responsive" height="150px" width="150px" />
+		                                        @endif
+											</div>
 										</div>
 									@endforeach
 								</header>
