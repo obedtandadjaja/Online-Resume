@@ -23,7 +23,7 @@
 				<!-- Header -->
 					<header id="header">
 						<h1>OBED JOSIAH TANDADJAJA</h1>
-						<p style="color:white">a Programmer's Humble Resume</p>
+						<p style="color:white">a Programmer's Resume</p>
 						<nav>
 							<ul>
 								<li><a href="portfolio">Portfolio</a></li>
