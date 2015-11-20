@@ -105,7 +105,7 @@
 										</div>
 										<div class="col-sm-3 box">
 											@if($feat->logo)
-	                                        <img src="{{ $feat->logo->location }}" class="img-responsive" height="200px" width="200px" />
+	                                        <img src="{{ $feat->logo->location }}" class="img-responsive" height="100px" width="100px" />
 	                                        @endif
 										</div>
 									@endforeach
