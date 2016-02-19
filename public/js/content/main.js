@@ -25,6 +25,20 @@
 
 	};
 
+	$(window).resize(function() {
+	    if ($(window).width() < 1100)
+	    {
+	    	alert("Sorry! This website currently only supports desktop/laptop previews.");
+	        window.location = "/";
+	    };
+	});
+
+	if($(window).width() < 1100)
+	{
+		alert("Sorry! This website currently only supports desktop/laptop previews.");
+		window.location = "/";
+	}
+
 	var $window = $(window);
 
 	$window.on('load', function() {
